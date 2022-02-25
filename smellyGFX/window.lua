@@ -2,13 +2,13 @@
 
 
 
--- check to see which scale to use?
+--[[ check to see which scale to use?
 function love.resize( w, h )
  local _,_, flags = love.window.getMode()
  
  local a=2
  local b,c=true,true
- for i=1,6*a do
+ for i=1,12*a do
   i=i/a-1
   local x=ceil(window.width*window.tileScale/i)
   local y=ceil(window.height*scaleSize*window.tileScale/i)
@@ -23,7 +23,7 @@ function love.resize( w, h )
  local r=max(7-getResizeFactor(),1)
  drawCanvas = newScreen(r)
 end
-
+--]]
 
 -- get the scale factor
 function getResizeFactor()
