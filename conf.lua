@@ -9,7 +9,7 @@ window={
  x = 145,
  y = 0
 }
-scaleSize=6
+scaleSize=12
 
 version = "v0.1"
 
@@ -18,7 +18,7 @@ function love.conf(t)
  t.window.resizable=true
  t.window.title = "SmellyGFX example "..version
 
- t.window.minwidth = window.width*16
- t.window.minheight = window.height*16
+ t.window.minwidth = window.width*window.tileScale
+ t.window.minheight = window.height*window.tileScale
  
 end
