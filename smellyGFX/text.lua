@@ -18,6 +18,25 @@ P Y U I @
 
 --]]
 
+local utf8 = require('utf8')
+
+-- dump out a table of the chars seperated by the codepoints.
+function utf8.dump(str)
+  local t={}
+  for i=1,#str do
+  
+  local o=utf8.offset(str,i)-i
+  
+ if i+o>#str then return t end
+ 
+ local c=utf8.char( utf8.codepoint(str, i+o, i+o) )
+ t[#t+1]=c
+ 
+ end
+ 
+ 
+ return t
+end
 
 
 -- draw text

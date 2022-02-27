@@ -1,4 +1,14 @@
-
+local function split(str,find)
+ local i, items=0, {}
+ 
+ while true do
+  local siz=str:find(find,i,true) or #str+1
+  items[#items+1]=str:sub(i,siz-1)
+  i=siz+#find
+  if i>#str then break end
+ end
+ return items
+end
 
 
 -- set filters
