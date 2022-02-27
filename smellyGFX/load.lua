@@ -1,3 +1,7 @@
+local tau = math.pi * 2
+local sin, cos = math.sin, math.cos
+local floor, ceil = math.floor, math.ceil
+
 local function split(str,find)
  local i, items=0, {}
  

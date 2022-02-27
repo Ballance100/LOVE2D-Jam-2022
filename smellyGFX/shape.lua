@@ -1,5 +1,7 @@
 ---- shape gfx
-
+local tau = math.pi * 2
+local sin, cos = math.sin, math.cos
+local floor, ceil = math.floor, math.ceil
 
 
 

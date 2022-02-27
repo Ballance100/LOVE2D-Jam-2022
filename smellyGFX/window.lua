@@ -1,4 +1,5 @@
 -- resizing window gfx
+local floor, ceil = math.floor, math.ceil
 
 
 
