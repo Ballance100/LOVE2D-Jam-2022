@@ -97,3 +97,7 @@ function love.update()
  if renderSprites then renderSprites() end
  globalTimer = globalTimer + 1
 end
+
+function love.mousemoved(event)
+  Game:mousemoved(event)
+end
