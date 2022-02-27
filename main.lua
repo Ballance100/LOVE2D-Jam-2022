@@ -9,6 +9,7 @@ local tau = 2 * math.pi
 -- defined by Nathan
 local lg = love.graphics
 
+local Game
 
 
 function love.load()
@@ -16,6 +17,7 @@ function love.load()
 
   -- load in the gfx api
   require("smellyGFX/load")
+  Game = require('game')
 
   -- make screens to use
   mainScreen = newScreen()
@@ -30,6 +32,7 @@ function love.load()
 
   -- time
   globalTimer=0
+
 
 
 end
@@ -75,12 +78,9 @@ function love.draw()
   setScreen(mainScreen)
   clear(63)
  
-  -- [[ test example 1
-  local c=50
-  rectangle(2,2,34,34, c)
-  circleOutLine(56,18, 16, 16, c, globalTimer/20)
-  circleFill(80,2,16, c)
-  
+  -- delegate drawing game stuff
+  Game:draw()
+
   -- draw to overlay screen
   setScreen(overlayScreen)
  
