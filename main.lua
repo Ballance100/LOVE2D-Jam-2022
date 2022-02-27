@@ -1,4 +1,5 @@
-
+libraries = {timer = require "hump.timer"}
+libs = libraries--shortcut
 -- shorthands (inherited from api)
 local abs = math.abs
 local floor, ceil = math.floor, math.ceil
@@ -92,8 +93,9 @@ function love.draw()
 end
 
 
--- needs to use update to render the spriets as needed to avoid lag.
-function love.update()
+-- needs to use update to render the sprites as needed to avoid lag.
+function love.update(dt)
+ libs.timer.update(dt)
  if renderSprites then renderSprites() end
  globalTimer = globalTimer + 1
 end

@@ -20,5 +20,6 @@ function love.conf(t)
 
  t.window.minwidth = window.width*window.tileScale
  t.window.minheight = window.height*window.tileScale
+ t.window.console = true
  
 end
