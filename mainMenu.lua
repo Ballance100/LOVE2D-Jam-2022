@@ -24,7 +24,12 @@ end
 
 function MainMenu:draw()
  
- text("  welcome to Catlateral      \n        damage 2:\n\n    seismic boogaloo",3,3,3,5,0)
+ text("\twelcome to Catlateral\n\t\t\t\t\t\tdamage 2:", 3, 3, 3, 3, 0)
+ text("seismic boogaloo",36,32,3,5,0)
+
+ text("- Start", 8, 55, 3, 3, 0)
+ text("- How to play", 8, 70, 3, 3, 0)
+ text("- About", 8, 85, 3, 3, 0)
 end
 
 return MainMenu
