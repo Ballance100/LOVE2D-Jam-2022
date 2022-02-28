@@ -2,6 +2,7 @@
 local lg = love.graphics
 
 local Game
+local MainMenu
 
 
 function love.load()
@@ -10,6 +11,7 @@ function love.load()
   -- load in the gfx api
   require("smellyGFX/load")
   Game = require('game')
+  MainMenu = require('mainMenu')
 
   -- make screens to use
   mainScreen = newScreen()
@@ -24,7 +26,6 @@ function love.load()
 
   -- time
   globalTimer=0
-
 
 
 end
@@ -72,6 +73,7 @@ function love.draw()
  
   -- delegate drawing game stuff
   Game:draw()
+  MainMenu:draw()
 
   -- draw to overlay screen
   setScreen(overlayScreen)

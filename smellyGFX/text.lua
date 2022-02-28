@@ -18,6 +18,12 @@ P Y U I @
 
 --]]
 
+
+local tau = math.pi * 2
+local sin, cos = math.sin, math.cos
+local floor, ceil = math.floor, math.ceil
+local max, min = math.max, math.min
+
 local utf8 = require('utf8')
 
 -- dump out a table of the chars seperated by the codepoints.
