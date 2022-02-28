@@ -92,9 +92,9 @@ function text(str,x,y, color, mode, outlineColor, timer)
    
   else
    
-   for k=-1,max( textCursor(t[i])-6 ,1) do
+   for k=-1,2 do--max( textCursor(t[i])-6 ,1) do
     for j=-1,1 do
-    text(t[i],cursor+ox+k, 0 + cursorY+oy+j, outlineColor or 1)
+     text(t[i],cursor+ox+k, 0 + cursorY+oy+j, outlineColor or 1)
     end
    end
    
@@ -116,7 +116,15 @@ end
 
 -- move cursor based on how big certain glyphs are
 function textCursor(char)
- return 8
+ local textcursorsizes={"i",6,"l",7,"t",7,"m",9,"M",9,"W",9}
+ local a = 8
+ for j=1,#textcursorsizes/2 do
+  if char==textcursorsizes[j*2-1] then
+   a=textcursorsizes[j*2]
+  end
+ end
+ return a
+ 
 end
 
 
@@ -141,5 +149,6 @@ function getStringSize(str)
  
  return n
 end
+
 
 
