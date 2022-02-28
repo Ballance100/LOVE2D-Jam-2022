@@ -1,11 +1,3 @@
-
--- shorthands (inherited from api)
-local abs = math.abs
-local floor, ceil = math.floor, math.ceil
-local sin, cos = math.sin, math.cos
-local min, max = math.min, math.max
-local tau = 2 * math.pi
-
 -- defined by Nathan
 local lg = love.graphics
 
@@ -98,6 +90,10 @@ function love.update()
  globalTimer = globalTimer + 1
 end
 
-function love.mousemoved(event)
-  Game:mousemoved(event)
+function love.mousemoved(x, y, dx, dy, istouch)
+  Game:mousemoved(x, y, dx, dy)
+end
+
+function love.mousepressed(x, y, dx, dy, istouch)
+  Game:mousepressed(x, y, dx, dy)
 end
