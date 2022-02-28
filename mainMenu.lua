@@ -23,7 +23,8 @@ function MainMenu:mousepressed(screenX, screenY, screenDX, screenDY)
 end
 
 function MainMenu:draw()
-  text("welcome to Catlateral damage 2:\n\n\t\t\t\t seismic boogaloo",3,3,63,5)
+ 
+ text("  welcome to Catlateral      \n        damage 2:\n\n    seismic boogaloo",3,3,3,5,0)
 end
 
 return MainMenu

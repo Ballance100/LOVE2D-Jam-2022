@@ -69,7 +69,7 @@ function love.draw()
  
   -- set to main screen
   setScreen(mainScreen)
-  clear(63)
+  clear(3)
  
   -- delegate drawing game stuff
   Game:draw()

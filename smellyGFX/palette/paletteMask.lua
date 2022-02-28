@@ -3,8 +3,8 @@
 -- create a palettemask object thingy
 function createPaletteMask()
  return {
-  imageData=love.image.newImageData(192,112),
-  paletteImage=love.graphics.newImage( love.image.newImageData(192,112) ),
+  imageData=love.image.newImageData(200,104),
+  paletteImage=love.graphics.newImage( love.image.newImageData(200,104) ),
   update=updatePaletteMask,
   set=setPaletteMask,
   add=addPaletteMask,

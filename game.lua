@@ -8,7 +8,7 @@ local player = Cat:new(cursorX, cursorY)
 
 function Game:draw()
   -- [[ test example 1
-  local c=50
+  local c=17
   -- rectangle(2,2,34,34, c)
   circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   do
