@@ -9,7 +9,7 @@ window={
  x = 145,
  y = 0
 }
-scaleSize=6
+scaleSize=12
 
 version = "v0.1"
 
