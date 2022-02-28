@@ -28,18 +28,17 @@ local utf8 = require('utf8')
 
 -- dump out a table of the chars seperated by the codepoints.
 function utf8.dump(str)
-  local t={}
-  for i=1,#str do
+ local t={}
+ for i=1,#str do
   
   local o=utf8.offset(str,i)-i
   
- if i+o>#str then return t end
- 
- local c=utf8.char( utf8.codepoint(str, i+o, i+o) )
- t[#t+1]=c
- 
+  if i+o>#str then return t end
+  
+  local c=utf8.char( utf8.codepoint(str, i+o, i+o) )
+  t[#t+1]=c
+  
  end
- 
  
  return t
 end
@@ -88,12 +87,12 @@ function text(str,x,y, color, mode, outlineColor, timer)
    
    if t[i]=="\n" then
     cursor  = x
-    cursorY = cursorY + 5
+    cursorY = cursorY + 10
    end
    
   else
    
-   for k=-1,max( textCursor(t[i])-3 ,1) do
+   for k=-1,max( textCursor(t[i])-6 ,1) do
     for j=-1,1 do
     text(t[i],cursor+ox+k, 0 + cursorY+oy+j, outlineColor or 1)
     end
@@ -106,7 +105,7 @@ function text(str,x,y, color, mode, outlineColor, timer)
    -- [[
    if t[i]=="\n" then
     cursor  = x
-    cursorY = cursorY + 5
+    cursorY = cursorY + 10
    end
    --]]
   end
@@ -117,19 +116,7 @@ end
 
 -- move cursor based on how big certain glyphs are
 function textCursor(char)
- local textcursorsizes={
-  "¡",2,"¿",3,"★",6,"Ω",6,"#",6,"$",5,"`",2,
-  "Q",0,"W",0,"E",0,"R",0,"T",0,"@",0,
-  "Y",0,"U",0,"I",0
- }
- local a=4
- for j=1,#textcursorsizes/2 do
-  if char==textcursorsizes[j*2-1] then
-   a=textcursorsizes[j*2]
-  end
- end
- return a
- 
+ return 8
 end
 
 

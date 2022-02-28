@@ -36,8 +36,8 @@ function getResizeFactor()
  
  local r=1
  local a=2
- for i=1,6*a do
-  i=6-i/a+1
+ for i=1,12*a do
+  i=12-i/a+1
   if y/i<=wy and x/i<=wx then
    r=i
   end
@@ -57,8 +57,8 @@ function setWindowScale()
  
  local r = getResizeFactor()
  
- local x=wx-(scaleSize*1/r)*192
- local y=wy-(scaleSize*1/r)*112
+ local x=wx-(scaleSize*1/r)*200
+ local y=wy-(scaleSize*1/r)*104
  
  x=x/(scaleSize*1/r)/2
  y=y/(scaleSize*1/r)/2

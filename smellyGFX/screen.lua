@@ -3,7 +3,7 @@
 function newScreen(r)
  r = r or 1
  return {
-  canvas = love.graphics.newCanvas(192*r,112*r, {format="r8"} ),
+  canvas = love.graphics.newCanvas(200*r,104*r, {format="r8"} ),
   paletteMask = createPaletteMask()
  }
 end

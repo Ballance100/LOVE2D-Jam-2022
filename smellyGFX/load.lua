@@ -20,7 +20,7 @@ love.graphics.setPointSize(1)
 -- set font. this call along with the text widths in text.lua are what you need to change to change the font stuff.
 -- feel free to replace.. might make a new font that's bigger for this game anyways cause I like making fonts.
 --love.graphics.setFont(love.graphics.newImageFont("smellyGFX/sprites/font.png","abcdefghijklmnopqrstuvwxyz 1234567890.,!¡?¿-+=~()<>★Ω#:;$`≀P%∙□"))
-local characters = [[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ _0123456789.,!¡?¿:;'`\"-+*/\|^%~=><()[]{}#$@&←→↑↓❤️🎮🖥☀️☁️☂️⛄️⚠️🌎🌍🌏]]
+local characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ _0123456789.,!¡?¿:;'`\"-+*/\\|^%~=><()[]{}#$@&←→↑↓❤️🎮🖥☀️☁️☂️⛄️⚠️🌎🌍🌏"
 print("----------CHARACTERS----------")
 print(characters)
 love.graphics.setFont(love.graphics.newImageFont(
