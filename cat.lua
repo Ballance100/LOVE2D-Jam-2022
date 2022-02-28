@@ -16,3 +16,4 @@ function Cat:new(x, y)
 end
 
 return Cat
+ 
