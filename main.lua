@@ -87,9 +87,11 @@ end
 
 
 -- needs to use update to render the spriets as needed to avoid lag.
-function love.update()
+function love.update(dt)
  if renderSprites then renderSprites() end
  globalTimer = globalTimer + 1
+
+ Game:update(dt)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch)
