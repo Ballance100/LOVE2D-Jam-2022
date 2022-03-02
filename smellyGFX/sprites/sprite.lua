@@ -1,3 +1,4 @@
+local floor, ceil = math.floor, math.ceil
 -- canvas used to send to paintshader
 paletteCanvas = love.graphics.newCanvas(8,1)
 

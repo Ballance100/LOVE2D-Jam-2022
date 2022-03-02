@@ -38,7 +38,7 @@ function newSprite(x,y, w,h)
     end
    end
    
-   assert(d<9,"Sprite has too many colors! The palette mapping for sprite #"..spriteCount.." was over the max 8!\n(At: x="..x..", y="..y..")")
+   --assert(d<9,"Sprite has too many colors! The palette mapping for sprite #"..spriteCount.." was over the max 8!\n(At: x="..x..", y="..y..")")
    
    if f then readMemory[#readMemory+1] = v end
    mappingImageData:setPixel( x + i-1, y + j-1, d/64,0,0,1)
@@ -98,15 +98,8 @@ function createSprites()
  
  sp={
   test={
-   -- whales
-   newSprite(0,0,2,2),
-   newSprite(2,0,2,2),
-   
-   -- text
-   newSprite(0,2),
-   newSprite(1,2),
-   newSprite(2,2),
-   newSprite(3,2),
+    -- background
+   newSprite(0,0,12.5,6.5),
    
    altPalette = newPalette(0,0)
   }

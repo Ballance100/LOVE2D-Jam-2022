@@ -1,3 +1,4 @@
+require('bump')
 local Game = {}
 
 local gameWidth, gameHeight = 200, 100
@@ -7,6 +8,7 @@ local Cat = require('cat')
 local player = Cat:new(cursorX, cursorY)
 
 function Game:draw()
+  sprite(sp.test[1], 0, 0)
   -- [[ test example 1
   local c=17
   -- rectangle(2,2,34,34, c)
