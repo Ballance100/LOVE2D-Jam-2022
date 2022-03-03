@@ -21,39 +21,28 @@ function Game:draw()
   -- rectangle(2,2,34,34, c)
   circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   do
-    local r = 8
-    circleFill(player.x - 0, player.y - 0, r, c)
+    sprite(sp.test[2], player.x, player.y - 1)
   end
 end
 
 function Game:update(dt)
   do -- player controller
     -- get x distance from cursor to the player
-    local signed_dx = cursorX - player.x
+    local signed_dx = cursorX - (player.x + 6)
     local dx_sign = signed_dx < 0 and -1 or 1
     local dx = math.abs(signed_dx)
     local speed
     local speed_lookup = {
-      8 , 10,
-      16, 20,
+      4 , 0 ,
+      8, 20,
       32, 50,
       10000, 90
     }
-    for i = (#speed_lookup - 1), 1, -2 do
+    for i = 1, #speed_lookup - 1, 2 do
       if dx < speed_lookup[i] then
         speed = speed_lookup[i+1]
         break
       end
-    end
-
-    if dx < 8 then
-      speed = 0
-    elseif dx < 10 then
-      speed = 20
-    elseif dx < 30 then
-      speed = 50
-    else
-      speed = 90
     end
 
   local goalX = player.x + (speed * dx_sign * dt)

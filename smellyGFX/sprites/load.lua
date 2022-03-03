@@ -100,6 +100,7 @@ function createSprites()
   test={
     -- background
    newSprite(0,0,12.5,6.5),
+   newSprite(12.5, 0, 1, 1),
    
    altPalette = newPalette(0,0)
   }

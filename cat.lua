@@ -11,7 +11,6 @@ function Cat:new(x, y)
   print("X: ", x, "Y: ", y)
   local opts = {
     x = x, y = y,
-    img = 'cat',
   }
   local base = SpriteObj:new(opts)
   return setmetatable(base, self)
