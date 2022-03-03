@@ -19,6 +19,16 @@ do
   world:add(player, player.x, player.y, 9, 15)
 end
 
+function semisolid(item, other)
+  if other == "shelf" or other == "stool" or other == "windowsill" then
+    if item.vy < 0 then
+      return false
+    end
+  end
+
+  return "slide"
+end
+
 function Game:draw()
   sprite(sp.test[1], 0, 0)
   -- [[ test example 1
@@ -53,7 +63,7 @@ function Game:update(dt)
   local goalX = player.x + (speed * dx_sign * dt)
   player.vy = player.vy + (16 * dt)
   local goalY = player.y + player.vy
-  local actualX, actualY, cols, len = world:move(player, goalX, goalY)
+  local actualX, actualY, cols, len = world:move(player, goalX, goalY, semisolid)
   local onGround = goalY > actualY
   player:moveTo(actualX, actualY, onGround)
   end
