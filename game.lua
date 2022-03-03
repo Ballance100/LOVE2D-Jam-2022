@@ -10,8 +10,13 @@ local player = Cat:new(cursorX, cursorY)
 local world = bump.newWorld(8)
 do
   local GW, GH = gameWidth, gameHeight
-  world:add("floor", 0, GH - 8, 200, 200)
-  world:add(player, player.x, player.y, 16, 16)
+  world:add("floor", 0, GH - 16, 200, 200)
+  world:add("stool", 51, 74, 5, 1)
+  world:add("shelf", 16, 58, 16, 1)
+  world:add("windowsill", 72, 63, 15, 1)
+  world:add("lwall", 0, 0, 16, 104)
+  world:add("rwall", GW - 16, 0, 16, 104)
+  world:add(player, player.x, player.y, 9, 15)
 end
 
 function Game:draw()

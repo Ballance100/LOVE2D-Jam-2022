@@ -8,7 +8,6 @@ local Cat = {
 Cat.__index = Cat
 
 function Cat:new(x, y)
-  print("X: ", x, "Y: ", y)
   local opts = {
     x = x, y = y,
   }
@@ -24,7 +23,7 @@ function Cat:moveTo(x, y, onGround)
 end
 
 function Cat:jump()
-  self.vy = -4.5
+  self.vy = -4.0
   return true
 end
 
