@@ -1,11 +1,18 @@
-require('bump')
+local bump = require('bump')
 local Game = {}
 
-local gameWidth, gameHeight = 200, 100
+local gameWidth, gameHeight = 200, 104
 local cursorX, cursorY = gameWidth / 2, gameHeight / 2
 
 local Cat = require('cat')
 local player = Cat:new(cursorX, cursorY)
+
+local world = bump.newWorld(8)
+do
+  local GW, GH = gameWidth, gameHeight
+  world:add("floor", 0, GH - 8, 200, 200)
+  world:add(player, player.x, player.y, 16, 16)
+end
 
 function Game:draw()
   sprite(sp.test[1], 0, 0)
@@ -15,7 +22,7 @@ function Game:draw()
   circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   do
     local r = 8
-    circleFill(player.x - r, player.y - r, r, c)
+    circleFill(player.x - 0, player.y - 0, r, c)
   end
 end
 
@@ -48,7 +55,13 @@ function Game:update(dt)
     else
       speed = 90
     end
-  player.x = player.x + (speed * dx_sign * dt)
+
+  local goalX = player.x + (speed * dx_sign * dt)
+  player.vy = player.vy + (16 * dt)
+  local goalY = player.y + player.vy
+  local actualX, actualY, cols, len = world:move(player, goalX, goalY)
+  local onGround = goalY > actualY
+  player:moveTo(actualX, actualY, onGround)
   end
 end
 
@@ -68,8 +81,10 @@ function Game:mousepressed(screenX, screenY, screenDX, screenDY)
   local scaleFactor, offsetX, offsetY = getStageScaleAndOffset()
   cursorX = screenX / scaleFactor - offsetX
   cursorY = screenY / scaleFactor - offsetY
-  player.x = cursorX
-  player.y = cursorY
+  -- player.x = cursorX
+  -- player.y = cursorY
+  local jumped = player.canJump and player:jump() or false
+  print("the player jumped?", jumped)
 end
 
 return Game
