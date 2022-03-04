@@ -73,7 +73,7 @@ function love.draw()
  
   -- delegate drawing game stuff
   Game:draw()
-  MainMenu:draw()
+  -- MainMenu:draw()
 
   -- draw to overlay screen
   setScreen(overlayScreen)

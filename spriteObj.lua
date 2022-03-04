@@ -1,9 +1,10 @@
 -- baseclass for game sprites
 local SpriteObj = {
   x = 0, y = 0,
+  w = 16, h = 16,
   vx = 0, vy = 0,
   img = 'default',
-  type = 'test object',
+  name = 'test object',
 }
 SpriteObj.__index = SpriteObj
 
