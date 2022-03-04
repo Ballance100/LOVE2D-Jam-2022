@@ -2,6 +2,7 @@ local SpriteObj = require('spriteObj')
 
 local Cat = {
   type = 'cat',
+  w = 9, h = 15,
   vy = 0,
   canJump = false
 }

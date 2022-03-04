@@ -1,4 +1,5 @@
 local bump = require('bump')
+local SpriteObj = require 'spriteObj'
 local Game = {}
 
 local gameWidth, gameHeight = 200, 104
@@ -8,24 +9,41 @@ local Cat = require('cat')
 local player = Cat:new(cursorX, cursorY)
 
 local world = bump.newWorld(8)
+local features
+
 do
   local GW, GH = gameWidth, gameHeight
-  world:add("floor", 0, GH - 16, 200, 200)
-  world:add("stool", 51, 74, 5, 1)
-  world:add("shelf", 16, 58, 16, 1)
-  world:add("windowsill", 72, 63, 15, 1)
-  world:add("lwall", 0, 0, 16, 104)
-  world:add("rwall", GW - 16, 0, 16, 104)
+  local spr = SpriteObj
+  -- the first two characters of name are read by the collision function
+  -- 'ss' is for semi-solid currently there are no other meaningful prefixes
+  features = {
+    spr:new({x =    0, y =     0, w =  16, h = GH, name = "lwall"}),
+    spr:new({x =  592, y =     0, w =  16, h = GH, name = "rwall"}),
+    spr:new({x =    0, y = GH-20, w = 608, h = 20, name = "floor"}),
+    spr:new({x =   63, y =    68, w =  40, h =  1, name = "sstable"}),
+    spr:new({x =   48, y =    75, w =  11, h =  1, name = "ssstool"}),
+    spr:new({x =   16, y =    56, w =  16, h =  1, name = "ssshelf"}),
+    spr:new({x =  125, y =    61, w =  15, h =  1, name = "sswindwosill"}),
+  }
+
+  for i, item in ipairs(features) do
+    print(i, item)
+    local x, y, w, h = item.x, item.y, item.w, item.h
+    world:add(item, x, y, w, h)
+  end
+
   world:add(player, player.x, player.y, 9, 15)
 end
 
-function semisolid(item, other)
-  if other == "shelf" or other == "stool" or other == "windowsill" then
-    if item.vy < 0 then
+function semisolid(actor, other)
+  local prefix = other.name:sub(1, 2)
+  if prefix == "ss" then -- semi-solid
+    if actor.vy < 0 then
+      return false
+    elseif actor.y + actor.h > other.y then
       return false
     end
   end
-
   return "slide"
 end
 
