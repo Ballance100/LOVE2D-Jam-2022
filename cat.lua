@@ -24,7 +24,7 @@ function Cat:moveTo(x, y, onGround)
 end
 
 function Cat:jump()
-  self.vy = -4.0
+  self.vy = -3.5
   return true
 end
 
