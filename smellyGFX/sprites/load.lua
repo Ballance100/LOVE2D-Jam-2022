@@ -99,8 +99,16 @@ function createSprites()
  sp={
   test={
     -- background
-   newSprite(0,0,12.5,6.5),
-   newSprite(12.5, 0, 1, 1),
+   newSprite(0,0,38,6.5),
+   -- player
+   newSprite(0, 9, 1, 1),
+   newSprite(1, 9, 1, 1),
+   newSprite(2, 9, 1, 1),
+   -- breakable objects
+   newSprite(10, 9, 1, 1),
+   newSprite(11, 9, 1, 1),
+   newSprite(12, 9, 1, 1),
+   newSprite(13, 9, 1, 1),
    
    altPalette = newPalette(0,0)
   }
