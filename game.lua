@@ -117,16 +117,30 @@ function Game:update(dt)
 
   -- collision response for breakables
   local targetObj
+  local idx
   for i, collision in ipairs(collisions) do
     local prefix = collisions[i].other.name:sub(1, 2)
-    if prefix == 'ba' then
+    for ii, item in ipairs(breakables) do
+      if item == collisions[i].other then
+        idx = ii
+        break
+      end
+    end
+
+    if breakables[idx] then
       if love.mouse.isDown(2) then
         print("swiped breakable object!")
         targetObj = collisions[i].other
+        break
       end
-      break
     end
   end
+
+  if targetObj then
+    table.remove(breakables, idx)
+    world:remove(targetObj)
+  end
+
   -- targetObj.tweenOutAndRemove
 end
 
