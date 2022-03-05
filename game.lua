@@ -10,12 +10,13 @@ local player = Cat:new(cursorX, cursorY)
 
 local world = bump.newWorld(8)
 local features
+local breakables
 
 do
   local GW, GH = gameWidth, gameHeight
   local spr = SpriteObj
   -- the first two characters of name are read by the collision function
-  -- 'ss' is for semi-solid currently there are no other meaningful prefixes
+  -- 'ss' is for semi-solid, ba stands for break-able 
   features = {
     spr:new({x =    0, y =     0, w =  16, h = GH, name = "lwall"}),
     spr:new({x =  592, y =     0, w =  16, h = GH, name = "rwall"}),
@@ -26,8 +27,17 @@ do
     spr:new({x =  125, y =    61, w =  15, h =  1, name = "sswindwosill"}),
   }
 
+  breakables = {
+    spr:new({x =   16, y =    40, w =  16, h =  16, name = "bacup", img = 5}),
+    spr:new({x =   46, y =    70, w =  16, h =  16, name = "bacup2", img = 5}),
+  }
+
+  for i, item in ipairs(breakables) do
+    local x, y, w, h = item.x, item.y, item.w, item.h
+    world:add(item, x, y, w, h)
+  end
+
   for i, item in ipairs(features) do
-    print(i, item)
     local x, y, w, h = item.x, item.y, item.w, item.h
     world:add(item, x, y, w, h)
   end
@@ -52,9 +62,14 @@ function Game:draw()
   -- [[ test example 1
   local c=17
   -- rectangle(2,2,34,34, c)
-  circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   do
     sprite(sp.test[2], player.x, player.y - 1)
+    
+    for i, item in ipairs(breakables) do
+      sprite(sp.test[item.img], item.x, item.y)
+    end
+
+    circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   end
 end
 
