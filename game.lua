@@ -1,5 +1,6 @@
 local bump = require('bump')
 local SpriteObj = require 'spriteObj'
+local BreakableSprite = require 'breakableSprite'
 local Game = {}
 
 local gameWidth, gameHeight = 200, 104
@@ -27,13 +28,20 @@ do
     spr:new({x =  125, y =    61, w =  15, h =  1, name = "sswindwosill"}),
   }
 
-  breakables = {
+  --[[breakables = {
     spr:new({x =   16, y =    40, w =  16, h =  16, name = "bacup", img = 5}),
-    spr:new({x =   46, y =    70, w =  16, h =  16, name = "bacup2", img = 5}),
+    spr:new({x =   48, y =    70, w =  16, h =  16, name = "bacup2", img = 5}),
+  }
+  --]]
+  breakables = {
+    BreakableSprite:new(16, 40, 'cup'),
+    BreakableSprite:new(48, 70, 'cup'),
   }
 
+
   for i, item in ipairs(breakables) do
-    local x, y, w, h = item.x, item.y, item.w, item.h
+    local x, y = item.x + item.bbox_x, item.y + item.bbox_y
+    local w, h = item.bbox_w, item.bbox_h
     world:add(item, x, y, w, h)
   end
 
@@ -53,6 +61,8 @@ function semisolid(actor, other)
     elseif actor.y + actor.h > other.y then
       return false
     end
+  elseif prefix == "ba" then
+    return "cross"
   end
   return "slide"
 end
@@ -63,7 +73,7 @@ function Game:draw()
   local c=17
   -- rectangle(2,2,34,34, c)
   do
-    sprite(sp.test[2], player.x, player.y - 1)
+    sprite(sp.test[2], player.x - 3, player.y - 1)
     
     for i, item in ipairs(breakables) do
       sprite(sp.test[item.img], item.x, item.y)
@@ -74,6 +84,7 @@ function Game:draw()
 end
 
 function Game:update(dt)
+  local collisions
   do -- player controller
     -- get x distance from cursor to the player
     local signed_dx = cursorX - (player.x + 6)
@@ -93,13 +104,30 @@ function Game:update(dt)
       end
     end
 
-  local goalX = player.x + (speed * dx_sign * dt)
-  player.vy = player.vy + (16 * dt)
-  local goalY = player.y + player.vy
-  local actualX, actualY, cols, len = world:move(player, goalX, goalY, semisolid)
-  local onGround = goalY > actualY
-  player:moveTo(actualX, actualY, onGround)
+    local goalX = player.x + (speed * dx_sign * dt)
+    player.vy = player.vy + (16 * dt)
+    local goalY = player.y + player.vy
+    local actualX, actualY, cols, len = world:move(player, goalX, goalY, semisolid)
+    collisions = cols
+    local onGround = goalY > actualY
+    player:moveTo(actualX, actualY, onGround)
+
   end
+
+
+  -- collision response for breakables
+  local targetObj
+  for i, collision in ipairs(collisions) do
+    local prefix = collisions[i].other.name:sub(1, 2)
+    if prefix == 'ba' then
+      if love.mouse.isDown(2) then
+        print("swiped breakable object!")
+        targetObj = collisions[i].other
+      end
+      break
+    end
+  end
+  -- targetObj.tweenOutAndRemove
 end
 
 function getStageScaleAndOffset()
@@ -114,14 +142,16 @@ function Game:mousemoved(screenX, screenY, screenDX, screenDY)
   cursorY = screenY / scaleFactor - offsetY
 end
 
-function Game:mousepressed(screenX, screenY, screenDX, screenDY)
+function Game:mousepressed(screenX, screenY, button, istouch, presses)
   local scaleFactor, offsetX, offsetY = getStageScaleAndOffset()
   cursorX = screenX / scaleFactor - offsetX
   cursorY = screenY / scaleFactor - offsetY
-  -- player.x = cursorX
-  -- player.y = cursorY
-  local jumped = player.canJump and player:jump() or false
-  print("the player jumped?", jumped)
+  if button == 1 then
+    local jumped = player.canJump and player:jump() or false
+    print("the player jumped?", jumped)
+  elseif button == 2 then
+    print("swipe!")
+  end
 end
 
 return Game
