@@ -133,7 +133,7 @@ function createSprites()
    newSprite(8.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
    newSprite(8.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
    newSprite(9.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
-   newSprite(9.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth), -- 30
+   newSprite(9.5, 7 + sixteenth, 0.5, 1 - sixteenth), -- 30
    
    altPalette = newPalette(0,0)
   }
