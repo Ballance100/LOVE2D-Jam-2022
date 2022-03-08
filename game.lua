@@ -104,7 +104,7 @@ function Game:draw()
       sprite(sp.test[item.img], item.x, item.y)
     end
     
-    drawScoreUI(13, 10)
+    drawScoreUI(Score[1], Score[2])
     circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   end
 end
