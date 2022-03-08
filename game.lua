@@ -14,6 +14,8 @@ local world = bump.newWorld(8)
 local features
 local breakables
 
+local Camera = require('camera')
+
 do
   local GW, GH = gameWidth, gameHeight
   local spr = SpriteObj
@@ -93,27 +95,29 @@ function drawScoreUI(blueScore, redScore)
 end
 
 function Game:draw()
-  sprite(sp.test[1], 0, 0)
+  
+  sprite(sp.test[1], Camera.x, 0)
   -- [[ test example 1
   local c=17
   -- rectangle(2,2,34,34, c)
   do
-    sprite(sp.test[2], player.x - 3, player.y - 1)
+    sprite(sp.test[2], Camera.x + player.x - 3, player.y - 1)
     
     for i, item in ipairs(breakables) do
-      sprite(sp.test[item.img], item.x, item.y)
+      sprite(sp.test[item.img], Camera.x + item.x, item.y)
     end
     
     drawScoreUI(Score[1], Score[2])
     circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   end
+  
 end
 
 function Game:update(dt)
   local collisions
   do -- player controller
     -- get x distance from cursor to the player
-    local signed_dx = cursorX - (player.x + 6)
+    local signed_dx = cursorX - Camera.x - (player.x + 6)
     local dx_sign = signed_dx < 0 and -1 or 1
     local dx = math.abs(signed_dx)
     local speed
@@ -137,6 +141,7 @@ function Game:update(dt)
     collisions = cols
     local onGround = goalY > actualY
     player:moveTo(actualX, actualY, onGround)
+    Camera:update(player)
 
   end
 
