@@ -76,10 +76,8 @@ function drawScoreUI(blueScore, redScore)
 
   local blueNumOne = math.floor(blueScore / 10)
   local blueNumTwo = blueScore % 10
-  print("bNumOne, NumTwo: ", blueNumOne, blueNumTwo)
   local blueSpriteIdxOne = blueSpriteNumbers[blueNumOne]
   local blueSpriteIdxTwo = blueSpriteNumbers[blueNumTwo]
-  print("bSprIdxOne, IdxTwo", blueSpriteIdxOne, blueSpriteIdxTwo)
 
   local redNumOne = math.floor(redScore / 10)
   local redNumTwo = redScore % 10
