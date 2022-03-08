@@ -95,7 +95,7 @@ function createSprites()
  
  
  
- 
+ local sixteenth = 1 / 16
  sp={
   test={
     -- background
@@ -109,6 +109,31 @@ function createSprites()
    newSprite(11, 9, 1, 1),
    newSprite(12, 9, 1, 1),
    newSprite(13, 9, 1, 1),
+   newSprite(13, 8, 1, 2),
+   -- score ui
+   newSprite(0, 8, 5, 1), -- 10
+   -- blue score numbers
+   newSprite(0.0, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(0.5, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(1.0, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(1.5, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(2.0, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(2.5, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(3.0, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(3.5, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(4.0, 7 + sixteenth, 0.5, 1 - 2*sixteenth),
+   newSprite(4.5, 7 + sixteenth, 0.5, 1 - 2*sixteenth), -- 20
+   -- red score numbers
+   newSprite(5.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(5.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(6.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(6.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(7.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(7.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(8.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(8.5 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(9.0 + sixteenth, 7 + sixteenth, 0.5, 1 - sixteenth),
+   newSprite(9.5, 7 + sixteenth, 0.5, 1 - sixteenth), -- 30
    
    altPalette = newPalette(0,0)
   }
