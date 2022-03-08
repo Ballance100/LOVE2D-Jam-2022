@@ -2,6 +2,7 @@ local bump = require('bump')
 local SpriteObj = require 'spriteObj'
 local BreakableSprite = require 'breakableSprite'
 local Game = {}
+local Score = {0, 0}
 
 local gameWidth, gameHeight = 200, 104
 local cursorX, cursorY = gameWidth / 2, gameHeight / 2
@@ -67,6 +68,32 @@ function semisolid(actor, other)
   return "slide"
 end
 
+local blueSpriteNumbers = {[0] = 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+local redSpriteNumbers  = {[0] = 21, 22, 23, 24, 25, 26, 27, 28, 29, 30}
+function drawScoreUI(blueScore, redScore)
+  local score_ui_x = (gameWidth - 80) / 2
+  sprite(sp.test[10], score_ui_x, 0)
+
+  local blueNumOne = math.floor(blueScore / 10)
+  local blueNumTwo = blueScore % 10
+  print("bNumOne, NumTwo: ", blueNumOne, blueNumTwo)
+  local blueSpriteIdxOne = blueSpriteNumbers[blueNumOne]
+  local blueSpriteIdxTwo = blueSpriteNumbers[blueNumTwo]
+  print("bSprIdxOne, IdxTwo", blueSpriteIdxOne, blueSpriteIdxTwo)
+
+  local redNumOne = math.floor(redScore / 10)
+  local redNumTwo = redScore % 10
+  local redSpriteIdxOne = redSpriteNumbers[redNumOne]
+  local redSpriteIdxTwo = redSpriteNumbers[redNumTwo]
+
+  -- blue
+  sprite(sp.test[blueSpriteIdxOne], score_ui_x + 23, 0)
+  sprite(sp.test[blueSpriteIdxTwo], score_ui_x + 31, 0)
+  -- red
+  sprite(sp.test[redSpriteIdxOne], score_ui_x + 42, 0)
+  sprite(sp.test[redSpriteIdxTwo], score_ui_x + 49, 0)
+end
+
 function Game:draw()
   sprite(sp.test[1], 0, 0)
   -- [[ test example 1
@@ -78,7 +105,8 @@ function Game:draw()
     for i, item in ipairs(breakables) do
       sprite(sp.test[item.img], item.x, item.y)
     end
-
+    
+    drawScoreUI(13, 10)
     circleOutLine(cursorX, cursorY, 4, 6, c, globalTimer/20)
   end
 end
@@ -139,6 +167,7 @@ function Game:update(dt)
   if targetObj then
     table.remove(breakables, idx)
     world:remove(targetObj)
+    Score[1] = Score[1] + 1
   end
 
   -- targetObj.tweenOutAndRemove
